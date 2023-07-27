@@ -1,0 +1,11 @@
+#!/usr/bin/env bash
+# print BEST SCHOOL 10 times with for loop
+# shellcheck disable=SC2034
+
+list="[1, 2, 3, 4, 5, 6, 7, 8, 9, 10]"
+
+for i in $list
+do
+	echo "Best School"
+done
+
