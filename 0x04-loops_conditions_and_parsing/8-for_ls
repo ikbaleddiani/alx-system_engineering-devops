@@ -1,0 +1,12 @@
+#!/usr/bin/env bash
+#Bash script that displays:
+
+#The content of the current directory
+#In a list format
+#Where only the part of the name after the first dash is displayed
+
+ls=$(ls)
+for f in $ls
+do
+	echo "$f" | cut -d '-' -f2
+done
