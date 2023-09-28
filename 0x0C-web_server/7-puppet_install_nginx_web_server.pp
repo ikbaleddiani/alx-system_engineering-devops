@@ -17,17 +17,20 @@ service { 'nginx':
   require => Package['nginx'],
 }
 
-file { '/var/www/html/index.html':
-  ensure  => file,
-  content => 'Hello World!',
+file_line { 'redirect':
+  ensure  => 'present',
+  line    => 'location / { return 200 "Hello World!"; }',
+  match   => '^\troot /var/www/html;$',
+  path    => '/etc/nginx/sites-available/default',
   require => Package['nginx'],
+  notify  => Service['nginx'],
 }
 
 file_line { 'redirect':
-  path    => '/etc/nginx/sites-available/default',
+  ensure  => 'present',
   line    => 'location /redirect_me { return 301 https://www.youtube.com/; }',
   match   => '^\troot /var/www/html;$',
-  ensure  => 'present',
+  path    => '/etc/nginx/sites-available/default',
   require => Package['nginx'],
   notify  => Service['nginx'],
 }
