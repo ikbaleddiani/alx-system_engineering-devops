@@ -1,0 +1,26 @@
+#!/usr/bin/env bash
+# Fetch and display subdomain informations
+infos() {
+	subdomains=("www" "lb-01" "web-01" "web-02")
+
+	if [ -n "$2" ]; then
+		subdomains=("$2")
+	fi
+
+	for sub in "${subdomains[@]}"
+	do
+		output=$(dig "$sub"."$1" | grep -A1 'ANSWER SECTION:')
+		record=$(echo "$output" | awk '{print $4}')
+		ip=$(echo "$output" | awk '{print $5}')
+		printf "The subdomain %s is a %s record and points to %s\n" $sub $record $ip
+	done
+}
+
+if [ "$#" -eq 1 ]
+then
+	infos "$1"
+elif [ "$#" -eq 2 ]
+then
+	infos "$1" "$2"
+fi
+
