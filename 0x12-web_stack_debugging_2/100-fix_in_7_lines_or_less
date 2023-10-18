@@ -1,9 +1,7 @@
 #!/usr/bin/env bash
-# configure the container to run nginx under nginx user on port 8080
-chown nginx:nginx /etc/nginx/nginx.conf
-chown nginx:nginx /etc/nginx/sites-available/default
-chmod u+rwx /etc/nginx/nginx.conf
-sed -i "s/#user www-data/user nginx/" /etc/nginx/nginx.conf
-sed -i "s/80/8080/" /etc/nginx/sites-available/default
+# Bash script that configure Nginx web server to run with the user nginx and to listen on all active IPs on port 8080
+sed -i 's/[0-9]\+ default/8080 default/' /etc/nginx/sites-enabled/default
+chmod 644 /etc/nginx/nginx.conf
+chown -R nginx:nginx /etc/nginx/
 pkill apache2
-su nginx service nginx restart
+sudo -u nginx service nginx restart
