@@ -17,6 +17,6 @@ if __name__ == "__main__":
     tasks_done = [task for task in tasks if task.get("completed") is True]
     total_done = len(tasks_done)
     print("Employee {} is done with tasks({}/{}):".format(
-        user,total_done,total_tasks))
+        user, total_done, total_tasks))
     for task_done in tasks_done:
         print("\t {}".format(task_done.get("title")))
