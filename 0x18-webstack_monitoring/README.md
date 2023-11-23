@@ -3,4 +3,4 @@
 - Sign up for Datadog and install datadog-agent.
 - Monitor some metrics.
 - Create a dashboard.
-## uthor: EDDIANIIQBAL
+### Author: EDDIANIIQBAL
